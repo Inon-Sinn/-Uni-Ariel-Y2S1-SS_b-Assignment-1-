@@ -40,24 +40,32 @@ TEST_CASE("Good input") {
 													 "@@@@@@@@@"));
 	/* Add more test here */
 
+
 	// Test 1-3 small areas
 	CHECK(nospaces(mat(1, 1, '@', '-')) == nospaces("@"));
+
 	CHECK(nospaces(mat(1, 3, '@', '-')) == nospaces("@\n"
 													"@\n"
 													"@"));
+
 	CHECK(nospaces(mat(3, 1, '@', '-')) == nospaces("@@@"));
+
 
 	// Test 4-6 same symbols
 	CHECK(nospaces(mat(1, 1, '*', '*')) == nospaces("*"));
+
 	CHECK(nospaces(mat(3, 3, '*', '*')) == nospaces("***\n"
 													"***\n"
 													"***"));
+
 	CHECK(nospaces(mat(5, 3, '*', '*')) == nospaces("*****\n"
 													"*****\n"
-													"*****\n"));
+													"*****"));
+
 
 	// Test 7-10 Rectangles
 	CHECK(nospaces(mat(7, 1, '&', '^')) == nospaces("&&&&&&&"));
+
 	CHECK(nospaces(mat(1, 7, '&', '^')) == nospaces("&\n"
 													"&\n"
 													"&\n"
@@ -65,24 +73,29 @@ TEST_CASE("Good input") {
 													"&\n"
 													"&\n"
 													"&\n"));
+
 	CHECK(nospaces(mat(3, 5, '&', '^')) == nospaces("&&&\n"
 													"&^&\n"
 													"&^&\n"
 													"&^&\n"
 													"&&&"));
+
 	CHECK(nospaces(mat(5, 3, '&', '^')) == nospaces("&&&&&\n"
 													"&^^^&\n"
 													"&&&&&"));
+
 
 	// Test 11-14 Big Tests
 	CHECK(nospaces(mat(3, 3, '#', '-')) == nospaces("###\n"
 													"#-#\n"
 													"###"));	
+
 	CHECK(nospaces(mat(5, 5, '#', '-')) == nospaces("#####\n"
 													"#---#\n"
 													"#-#-#\n"
 													"#---#\n"
-													"#####"));														
+													"#####"));		
+
 	CHECK(nospaces(mat(7, 7, '#', '-')) == nospaces("#######\n"
 													"#-----#\n"
 													"#-###-#\n"
@@ -90,6 +103,7 @@ TEST_CASE("Good input") {
 													"#-###-#\n"
 													"#-----#\n"
 													"#######"));	
+													
 	CHECK(nospaces(mat(9, 9, '#', '-')) == nospaces("#########\n"
 													"#-------#\n"
 													"#-#####-#\n"
@@ -127,6 +141,3 @@ TEST_CASE("Bad input") {
 
 
 }
-
-
-/* Add more test cases here */
