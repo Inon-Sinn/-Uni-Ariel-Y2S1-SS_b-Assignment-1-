@@ -6,7 +6,7 @@
  *
  * AUTHORS: Inon Sinn
  * 
- * Date: 8/3/2022
+ * Date: 2021-02
  */
 
 #include "doctest.h"
@@ -39,11 +39,92 @@ TEST_CASE("Good input") {
 													 "@-------@\n"
 													 "@@@@@@@@@"));
 	/* Add more test here */
+
+	// Test 1-3 small areas
+	CHECK(nospaces(mat(1, 1, '@', '-')) == nospaces("@"));
+	CHECK(nospaces(mat(1, 3, '@', '-')) == nospaces("@\n"
+													"@\n"
+													"@"));
+	CHECK(nospaces(mat(3, 1, '@', '-')) == nospaces("@@@"));
+
+	// Test 4-6 same symbols
+	CHECK(nospaces(mat(1, 1, '*', '*')) == nospaces("*"));
+	CHECK(nospaces(mat(3, 3, '*', '*')) == nospaces("***\n"
+													"***\n"
+													"***"));
+	CHECK(nospaces(mat(5, 3, '*', '*')) == nospaces("*****\n"
+													"*****\n"
+													"*****\n"));
+
+	// Test 7-10 Rectangles
+	CHECK(nospaces(mat(7, 1, '&', '^')) == nospaces("&&&&&&&"));
+	CHECK(nospaces(mat(1, 7, '&', '^')) == nospaces("&\n"
+													"&\n"
+													"&\n"
+													"&\n"
+													"&\n"
+													"&\n"
+													"&\n"));
+	CHECK(nospaces(mat(3, 5, '&', '^')) == nospaces("&&&\n"
+													"&^&\n"
+													"&^&\n"
+													"&^&\n"
+													"&&&"));
+	CHECK(nospaces(mat(5, 3, '&', '^')) == nospaces("&&&&&\n"
+													"&^^^&\n"
+													"&&&&&"));
+
+	// Test 11-14 Big Tests
+	CHECK(nospaces(mat(3, 3, '#', '-')) == nospaces("###\n"
+													"#-#\n"
+													"###"));	
+	CHECK(nospaces(mat(5, 5, '#', '-')) == nospaces("#####\n"
+													"#---#\n"
+													"#-#-#\n"
+													"#---#\n"
+													"#####"));														
+	CHECK(nospaces(mat(7, 7, '#', '-')) == nospaces("#######\n"
+													"#-----#\n"
+													"#-###-#\n"
+													"#-#-#-#\n"
+													"#-###-#\n"
+													"#-----#\n"
+													"#######"));	
+	CHECK(nospaces(mat(9, 9, '#', '-')) == nospaces("#########\n"
+													"#-------#\n"
+													"#-#####-#\n"
+													"#-#---#-#\n"
+													"#-#-#-#-#\n"
+													"#-#---#-#\n"
+													"#-#####-#\n"
+													"#-------#\n"
+													"#########"));
+
 }
 
 TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(10, 5, '$', '%'));
-    /* Add more test here */
+
+	// Test 1-3 - zero test
+	CHECK_THROWS(mat(0, 0, '*', '-'));
+	CHECK_THROWS(mat(5, 0, '*', '-'));
+	CHECK_THROWS(mat(0, 5, '*', '-'));
+
+	// Test 4-6 - negative tests
+	CHECK_THROWS(mat(-1, -1, '~', '$'));
+	CHECK_THROWS(mat(-5, 5, '~', '$'));
+	CHECK_THROWS(mat(5, -5, '~', '$'));
+
+	// Test 7-9 odd numbers tests
+	CHECK_THROWS(mat(2, 2, '%', '#'));
+	CHECK_THROWS(mat(2, 5, '%', '#'));
+	CHECK_THROWS(mat(5, 2, '%', '#'));
+
+	// Test 10-12 wrong Symbols - check if needed
+	// CHECK_THROWS(mat(1, 1, ' ', '*'));
+	// CHECK_THROWS(mat(1, 1, '\t', '*'));
+	// CHECK_THROWS(mat(1, 1, '\n', '*'));
+	// CHECK_THROWS(mat(1, 1, '\r', '*'));
+
 
 }
 
