@@ -11,14 +11,6 @@
 #include <stdexcept>
 using namespace std;
 
-string nospaces(string input) {
-	std::erase(input, ' ');
-	std::erase(input, '\t');
-	std::erase(input, '\n');
-	std::erase(input, '\r');
-	return input;
-}
-
 int main() {
 
 	cout << ariel::mat(9, 7, '@', '-') << endl;
